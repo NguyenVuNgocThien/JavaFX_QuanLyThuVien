@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="1152.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.MuonSachController">
+    <stylesheets>
+        <URL value="@muonsach.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="DSSach" layoutX="10.0" layoutY="100.0" prefHeight="219.0" prefWidth="1131.0">
+        <columns>
+          <TableColumn fx:id="MaSach" prefWidth="54.66665554046631" text="Mã Sách" />
+          <TableColumn fx:id="TenSach" prefWidth="152.0000228881836" text="Tên Sách" />
+            <TableColumn fx:id="TenTacGia" minWidth="0.0" prefWidth="125.33338928222656" text="Tên Tác Giả" />
+            <TableColumn fx:id="MoTaSach" minWidth="0.0" prefWidth="460.0000305175781" text="Mô Tả Sách" />
+            <TableColumn fx:id="PhatHanh" prefWidth="70.0" text="Phát Hành" />
+            <TableColumn fx:id="NoiPhatHanh" prefWidth="91.33331298828125" text="Nơi Phát Hành" />
+            <TableColumn fx:id="TinhTrang" prefWidth="87.33331298828125" text="Tình Trạng " />
+            <TableColumn fx:id="LoaiSach" prefWidth="90.66656494140625" text="Loại Sách" />
+        </columns>
+      </TableView>
+      <TableView fx:id="DSMuon" layoutX="223.0" layoutY="359.0" prefHeight="187.0" prefWidth="527.0">
+        <columns>
+          <TableColumn fx:id="IDMuon" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="UserName" prefWidth="75.0" text="UserName" />
+            <TableColumn fx:id="MaSach2" prefWidth="75.0" text="Mã Sách" />
+            <TableColumn fx:id="PhoneNumber" prefWidth="126.00006103515625" text="PhoneNumber" />
+            <TableColumn fx:id="NgayTra" prefWidth="82.6666259765625" text="Ngày Trả" />
+            <TableColumn fx:id="NgayMuon" prefWidth="92.0" text="Ngày Mượn" />
+        </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="61.0" prefWidth="1152.0" text="Quản Lý Mượn Sách" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="US" alignment="CENTER" layoutX="8.0" layoutY="359.0" prefHeight="17.0" prefWidth="210.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

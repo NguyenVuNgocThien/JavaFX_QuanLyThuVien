@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.QuanLyDocGiaController">
+    <stylesheets>
+        <URL value="@quanlydocgia.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="DSDocGia" layoutX="84.0" layoutY="58.0" prefHeight="360.0" prefWidth="671.0">
+         <columns>
+            <TableColumn fx:id="TenDocGia" prefWidth="75.0" text="TenDocGia" />
+            <TableColumn fx:id="NgaySinh" prefWidth="75.0" text="NgaySinh" />
+            <TableColumn fx:id="ChucVu" prefWidth="75.0" text="ChucVu" />
+            <TableColumn fx:id="TinhTrangThe" prefWidth="109.3333740234375" text="TinhTrangThe" />
+            <TableColumn fx:id="Gmail" prefWidth="90.66668701171875" text="Gmail" />
+            <TableColumn fx:id="GioiTinh" prefWidth="83.33331298828125" text="GioiTinh" />
+            <TableColumn fx:id="SDT" prefWidth="82.0" text="SDT" />
+            <TableColumn fx:id="Khoa" prefWidth="88.6666259765625" text="Khoa" />
+         </columns></TableView>
+      <Label alignment="CENTER" layoutY="1.0" prefHeight="43.0" prefWidth="769.0" text="Quản Lý Độc Giả" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

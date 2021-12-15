@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import Response.*?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="192.0" prefWidth="545.0" stylesheets="@dangnhap.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.DangNhapController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.33331298828125" minWidth="10.0" prefWidth="102.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="537.3333435058594" minWidth="10.0" prefWidth="205.33334350585938" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="537.3333435058594" minWidth="10.0" prefWidth="303.999989827474" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints />
+    <RowConstraints maxHeight="295.3332977294922" minHeight="10.0" prefHeight="58.99998982747396" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="314.00000190734863" minHeight="10.0" prefHeight="44.000020345052086" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="266.33332570393884" minHeight="10.0" prefHeight="39.99997965494792" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="304.33333587646484" minHeight="10.0" prefHeight="49.33335367838541" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="304.33333587646484" minHeight="10.0" prefHeight="49.33335367838541" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="65.0" prefWidth="601.0" text="Đăng Nhập" textAlignment="CENTER" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" prefHeight="17.0" prefWidth="108.0" text="UserName" textAlignment="CENTER" GridPane.rowIndex="2" />
+      <Label alignment="CENTER" prefHeight="17.0" prefWidth="113.0" text="PassWord" textAlignment="CENTER" GridPane.rowIndex="3" />
+      <RadioButton fx:id="rdQL" mnemonicParsing="false" prefHeight="17.0" prefWidth="96.0" text="Quản Lý" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <toggleGroup>
+            <ToggleGroup fx:id="QL" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rdND" mnemonicParsing="false" text="Người Dùng" toggleGroup="$QL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Button fx:id="btDangNhap" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#BTclickDangNhap" prefHeight="25.0" prefWidth="81.0" text="Đăng Nhập" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <Button fx:id="btDangKy" mnemonicParsing="false" onAction="#BTclickDangKy" prefHeight="25.0" prefWidth="81.0" text="Đăng Ký" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <TextLimit fx:id="txtUserName" prefHeight="25.0" prefWidth="369.0" styleClass="UserName" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <PasswordField fx:id="txtPass" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+   </children>
+</GridPane>
