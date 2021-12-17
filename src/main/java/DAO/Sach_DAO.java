@@ -7,6 +7,7 @@ package DAO;
 
 import DTO.Sach;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,6 +33,23 @@ public class Sach_DAO {
                 rs.getString("PhatHanh"),rs.getString("NoiPhatHanh"),rs.getString("TinhTrang"),rs.getString("LoaiSach"));
                 dsSach.add(a);
             }
+        }
+        return dsSach;
+    }
+    public List<Sach> TimKiemSach(String TenTacGia) throws SQLException{
+        List<Sach> dsSach=new ArrayList<>();
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="select * from sach where TenTacGia=?";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1, TenTacGia);
+            ResultSet rs= stm.executeQuery();
+            while(rs.next()){
+            Sach a=new Sach(rs.getString("MaSach"),rs.getString("TenSach"),rs.getString("TenTacGia"),rs.getString("MoTaSach"),
+                rs.getString("PhatHanh"),rs.getString("NoiPhatHanh"),rs.getString("TinhTrang"),rs.getString("LoaiSach"));
+            dsSach.add(a);
+            }
+            conn.commit();
         }
         return dsSach;
     }

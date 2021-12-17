@@ -10,17 +10,21 @@ import DAO.Sach_DAO;
 import DTO.Muon;
 import DTO.Sach;
 import Response.TextLimit;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -46,13 +50,19 @@ public class MuonSachController implements Initializable {
    @FXML private TableColumn<Muon,String> NgayTra;
    @FXML private TableColumn<Muon,String> NgayMuon;
    @FXML private Label US;
+   @FXML private Button btTimKiem;
+   @FXML private TextField txtTimKiem;
+    public void BTTimKiem(ActionEvent event) throws IOException, SQLException{
+        this.DSSach.getItems().clear();
+       loadDSTimKiem();
+   }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         US.setText(DangNhapController.LayUser);
         this.DSSach.getItems().clear();
        try {
-           loadDSSach();
+               loadDSSach();
        } catch (SQLException ex) {
            Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -62,6 +72,15 @@ public class MuonSachController implements Initializable {
        } catch (SQLException ex) {
            Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
        }
+       btTimKiem.setOnAction((ActionEvent event)->{
+            try {
+                BTTimKiem(event);
+            } catch (IOException ex) {
+                Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       });
     }    
     private void loadDSMuon() throws SQLException{
         System.out.println(DangNhapController.LayUser);
@@ -86,5 +105,17 @@ public class MuonSachController implements Initializable {
         this.LoaiSach.setCellValueFactory(new PropertyValueFactory<Sach,String>("LoaiSach"));
         Sach_DAO a=new Sach_DAO();
         DSSach.setItems(FXCollections.observableList(a.DanhSachSach()));
+    }
+    private void loadDSTimKiem() throws SQLException{
+        this.MaSach.setCellValueFactory(new PropertyValueFactory<Sach,String>("MaSach"));
+        this.TenSach.setCellValueFactory(new PropertyValueFactory<Sach,String>("TenSach"));
+        this.TenTacGia.setCellValueFactory(new PropertyValueFactory<Sach,String>("TenTacGia"));
+        this.MoTaSach.setCellValueFactory(new PropertyValueFactory<Sach,String>("MoTaSach"));
+        this.PhatHanh.setCellValueFactory(new PropertyValueFactory<Sach,String>("PhatHanh"));
+        this.NoiPhatHanh.setCellValueFactory(new PropertyValueFactory<Sach,String>("NoiPhatHanh"));
+        this.TinhTrang.setCellValueFactory(new PropertyValueFactory<Sach,String>("TinhTrang"));
+        this.LoaiSach.setCellValueFactory(new PropertyValueFactory<Sach,String>("LoaiSach"));
+        Sach_DAO a=new Sach_DAO();
+        DSSach.setItems(FXCollections.observableList(a.TimKiemSach(txtTimKiem.getText())));
     }
 }
