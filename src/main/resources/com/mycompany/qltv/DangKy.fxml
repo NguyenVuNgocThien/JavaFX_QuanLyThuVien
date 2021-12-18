@@ -66,5 +66,6 @@
       <RadioButton fx:id="rdSinhVien" mnemonicParsing="false" text="Sinh Viên" toggleGroup="$ChucVu" GridPane.columnIndex="6" GridPane.rowIndex="1" />
       <TextField fx:id="txtKhoa" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
       <Button fx:id="btDangKy" mnemonicParsing="false" onAction="#butDangKy" prefHeight="25.0" prefWidth="221.0" text="Đăng Ký Tài Khoản" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <Button fx:id="TroVe" mnemonicParsing="false" onAction="#btBack" prefHeight="25.0" prefWidth="81.0" text="Trở Về" GridPane.columnIndex="6" GridPane.rowIndex="6" />
    </children>
 </GridPane>

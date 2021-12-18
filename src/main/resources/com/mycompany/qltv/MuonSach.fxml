@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -9,12 +10,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="1679.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.MuonSachController">
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="1370.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.MuonSachController">
     <stylesheets>
         <URL value="@muonsach.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="DSSach" layoutX="10.0" layoutY="100.0" prefHeight="219.0" prefWidth="1121.0">
+      <TableView fx:id="DSSach" layoutX="14.0" layoutY="100.0" prefHeight="219.0" prefWidth="1121.0">
         <columns>
           <TableColumn fx:id="MaSach" prefWidth="54.66665554046631" text="Mã Sách" />
           <TableColumn fx:id="TenSach" prefWidth="152.0000228881836" text="Tên Sách" />
@@ -26,7 +27,7 @@
             <TableColumn fx:id="LoaiSach" prefWidth="90.66656494140625" text="Loại Sách" />
         </columns>
       </TableView>
-      <TableView fx:id="DSMuon" layoutX="1141.0" layoutY="175.0" prefHeight="143.0" prefWidth="527.0">
+      <TableView fx:id="DSMuon" layoutX="14.0" layoutY="367.0" prefHeight="143.0" prefWidth="527.0">
         <columns>
           <TableColumn fx:id="IDMuon" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="UserName" prefWidth="75.0" text="UserName" />
@@ -36,17 +37,29 @@
             <TableColumn fx:id="PhoneNumber" prefWidth="126.00006103515625" text="PhoneNumber" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="61.0" prefWidth="1152.0" text="Quản Lý Mượn Sách" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="61.0" prefWidth="1394.0" text="Quản Lý Mượn Sách" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="US" alignment="CENTER" layoutX="1141.0" layoutY="100.0" prefHeight="17.0" prefWidth="210.0">
+      <Label fx:id="US" alignment="CENTER" layoutX="925.0" layoutY="63.0" prefHeight="25.0" prefWidth="209.0">
          <font>
-            <Font size="28.0" />
+            <Font size="11.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTimKiem" layoutX="548.0" layoutY="329.0" />
-      <Button fx:id="btTimKiem" layoutX="713.0" layoutY="329.0" mnemonicParsing="false" onAction="#BTTimKiem" text="Tìm Kiếm" />
+      <TextField fx:id="txtTimKiem" layoutX="432.0" layoutY="63.0" prefHeight="25.0" prefWidth="338.0" />
+      <Button fx:id="btTimKiem" layoutX="358.0" layoutY="63.0" mnemonicParsing="false" onAction="#BTTimKiem" prefHeight="25.0" prefWidth="74.0" text="Tìm Kiếm" />
+      <TableView fx:id="tbYeuCau" layoutX="627.0" layoutY="368.0" prefHeight="143.0" prefWidth="167.0">
+        <columns>
+          <TableColumn fx:id="UserNameBangYeuCau" prefWidth="86.00006103515625" text="UserName" />
+          <TableColumn fx:id="MaSachBangYeuCau" prefWidth="75.3333740234375" text="Mã Sách" />
+        </columns>
+      </TableView>
+      <Button fx:id="btYeuCauMuonSach" layoutX="627.0" layoutY="331.0" mnemonicParsing="false" onAction="#BTYeuCau" text="Yêu Cầu Mượn Sách" />
+      <Hyperlink fx:id="hpBack" layoutX="1.0" layoutY="64.0" onAction="#hpVeTrangChu" prefHeight="24.0" prefWidth="254.0" text="Về Trang Chủ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
    </children>
 </AnchorPane>

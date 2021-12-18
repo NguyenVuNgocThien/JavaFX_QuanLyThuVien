@@ -32,7 +32,7 @@ public class Muon_DAO {
             stm.setString(1, UserName);
             ResultSet rs= stm.executeQuery();
             while(rs.next()){
-                Muon a=new Muon(rs.getString("IDMuon"),rs.getString("PhoneNumber"),rs.getString("NgayTra"),rs.getString("NgayMuon"),rs.getString("MaSach"),rs.getString("UserName"));
+                Muon a=new Muon(rs.getInt("IDMuon"),rs.getString("PhoneNumber"),rs.getString("NgayTra"),rs.getString("NgayMuon"),rs.getString("MaSach"),rs.getString("UserName"));
                 dsMuon.add(a);
             }
             conn.commit();

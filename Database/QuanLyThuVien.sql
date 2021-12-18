@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `muon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `muon` (
-  `IDMuon` varchar(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `IDMuon` int NOT NULL AUTO_INCREMENT,
   `PhoneNumber` varchar(11) DEFAULT NULL,
   `NgayTra` datetime DEFAULT NULL,
   `NgayMuon` datetime DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `muon` (
   KEY `UserName` (`UserName`),
   CONSTRAINT `muon_ibfk_1` FOREIGN KEY (`MaSach`) REFERENCES `sach` (`MaSach`),
   CONSTRAINT `muon_ibfk_2` FOREIGN KEY (`UserName`) REFERENCES `quanlydocgia` (`UserName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `muon` (
 
 LOCK TABLES `muon` WRITE;
 /*!40000 ALTER TABLE `muon` DISABLE KEYS */;
-INSERT INTO `muon` VALUES ('0bf85','0123654789','2021-12-15 00:00:00','2021-12-08 00:00:00','456','dhthanh'),('0d8e3','0123654789','2021-12-23 00:00:00','2021-12-02 00:00:00','098','hthinh'),('c71bf','0123654789','2021-12-29 00:00:00','2021-12-04 00:00:00','124','tan.th'),('f8f42','0123654789','2021-12-29 00:00:00','2021-12-01 00:00:00','123','tan.th');
+INSERT INTO `muon` VALUES (1,'0123654789','2021-12-15 00:00:00','2021-12-08 00:00:00','456','dhthanh'),(2,'0123654789','2021-12-23 00:00:00','2021-12-02 00:00:00','098','hthinh'),(3,'0123654789','2021-12-29 00:00:00','2021-12-04 00:00:00','124','tan.th'),(4,'0123654789','2021-12-29 00:00:00','2021-12-01 00:00:00','123','tan.th');
 /*!40000 ALTER TABLE `muon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,7 +75,7 @@ CREATE TABLE `quanlydocgia` (
 
 LOCK TABLES `quanlydocgia` WRITE;
 /*!40000 ALTER TABLE `quanlydocgia` DISABLE KEYS */;
-INSERT INTO `quanlydocgia` VALUES ('dhthanh','55hh2','Duong Huu Thanh','1985-01-17 00:00:00','Giảng Viên','Enable','dhthanh@ou.edu.vn','Nam','0124569873','Công Nghệ Thông Tin'),('duyen.h','90d5a','Duyen Ha','2000-12-08 00:00:00','Sinh Viên','Enable','duyen@ou.edu.vn','Nữ','0123546987','Đào Tạo Đặc Biệt'),('hthinh','34dde','Hong Thinh','2000-09-08 00:00:00','Admin','Enable','thinh@ou.edu.vn','Nam','0145236987','Công Nghệ Thông Tin'),('tan.th','886a3','Tan Thanh','2001-12-15 00:00:00','Admin','Enable','tanth@ou.edu.vn','Nam','0123456789','Công Nghệ Thông Tin'),('thien.n','thien!2','ThienNguyen','2001-10-26 00:00:00','Sinh Viên','Enable','ngocthien@ou.edu.vn','Nam','0907879210','CNTT'),('tlam.tr','59afa','Truc Lam','2000-12-02 00:00:00','Sinh Viên','Disable','tlam@ou.edu.vn','Nữ','0213654789','Công Nghệ Thông Tin');
+INSERT INTO `quanlydocgia` VALUES ('dhthanh','55hh2','Duong Huu Thanh','1985-01-17 00:00:00','Giảng Viên','Enable','dhthanh@ou.edu.vn','Nam','0124569873','Công Nghệ Thông Tin'),('duyen.h','90d5a','Duyen Ha','2000-12-08 00:00:00','Sinh Viên','Enable','duyen@ou.edu.vn','Nữ','0123546987','Đào Tạo Đặc Biệt'),('hthinh','34dde','Hong Thinh','2000-09-08 00:00:00','Admin','Enable','thinh@ou.edu.vn','Nam','0145236987','Công Nghệ Thông Tin'),('tan.th','886a3','Tan Thanh','2001-12-15 00:00:00','Admin','Enable','tanth@ou.edu.vn','Nam','0123456789','Công Nghệ Thông Tin'),('thien','thien$2','Nguyễn Vũ Ngọc Thiện','2001-12-26 00:00:00','Sinh Viên','Enable','ngocthien3821@ou.edu.vn','Nam','0907879210','CNTT'),('thien.n','thien!2','ThienNguyen','2001-10-26 00:00:00','Sinh Viên','Enable','ngocthien@ou.edu.vn','Nam','0907879210','CNTT'),('tlam.tr','59afa','Truc Lam','2000-12-02 00:00:00','Sinh Viên','Disable','tlam@ou.edu.vn','Nữ','0213654789','Công Nghệ Thông Tin');
 /*!40000 ALTER TABLE `quanlydocgia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ DROP TABLE IF EXISTS `tra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tra` (
-  `IDTra` varchar(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `IDTra` int NOT NULL AUTO_INCREMENT,
   `MaSach` varchar(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `PhoneNumber` varchar(11) DEFAULT NULL,
@@ -139,6 +139,35 @@ LOCK TABLES `tra` WRITE;
 /*!40000 ALTER TABLE `tra` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tra` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `yeucau`
+--
+
+DROP TABLE IF EXISTS `yeucau`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `yeucau` (
+  `IDYeuCau` int NOT NULL AUTO_INCREMENT,
+  `MaSach` varchar(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `UserName` varchar(20) NOT NULL,
+  PRIMARY KEY (`IDYeuCau`,`MaSach`,`UserName`),
+  KEY `MaSach` (`MaSach`),
+  KEY `UserName` (`UserName`),
+  CONSTRAINT `yeucau_ibfk_1` FOREIGN KEY (`MaSach`) REFERENCES `sach` (`MaSach`),
+  CONSTRAINT `yeucau_ibfk_2` FOREIGN KEY (`UserName`) REFERENCES `quanlydocgia` (`UserName`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `yeucau`
+--
+
+LOCK TABLES `yeucau` WRITE;
+/*!40000 ALTER TABLE `yeucau` DISABLE KEYS */;
+INSERT INTO `yeucau` VALUES (1,'098','dhthanh');
+/*!40000 ALTER TABLE `yeucau` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -149,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-15 21:24:15
+-- Dump completed on 2021-12-18 14:57:30

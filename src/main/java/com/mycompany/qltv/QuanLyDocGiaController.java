@@ -8,6 +8,7 @@ package com.mycompany.qltv;
 import DAO.ConnectionClass;
 import DAO.DocGia_DAO;
 import DTO.DocGia;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,12 +18,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -39,6 +43,19 @@ public class QuanLyDocGiaController implements Initializable  {
    @FXML private TableColumn<DocGia,String> GioiTinh;
    @FXML private TableColumn<DocGia,String> SDT;
    @FXML private TableColumn<DocGia,String> Khoa;
+   @FXML private Button btXoa;
+   @FXML private Button btQLMuon;
+   @FXML private Button btQLTra;
+   public void btXoaThanhVien(ActionEvent event) throws SQLException{
+       DocGia_DAO a=new DocGia_DAO();
+       if(a.XoaThanhVien(DSDocGia.getSelectionModel().getSelectedItem())==1 )
+       {
+           JOptionPane.showMessageDialog(null, "Xóa Thành Công");
+           loadDSDocGia();
+       }
+       else
+           JOptionPane.showMessageDialog(null, "Xóa Thất bại,Thành Viên Chưa Hết hạn");
+   }
    @Override
    public void initialize  (URL url,ResourceBundle rb){
        this.DSDocGia.getItems().clear();
@@ -47,7 +64,13 @@ public class QuanLyDocGiaController implements Initializable  {
        } catch (SQLException ex) {
            Logger.getLogger(QuanLyDocGiaController.class.getName()).log(Level.SEVERE, null, ex);
        }
-     
+       btXoa.setOnAction((ActionEvent event)->{
+           try {
+               btXoaThanhVien(event);
+           } catch (SQLException ex) {
+               Logger.getLogger(QuanLyDocGiaController.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       });
            
      
    }

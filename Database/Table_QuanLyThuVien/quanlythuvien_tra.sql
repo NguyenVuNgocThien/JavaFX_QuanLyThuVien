@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `tra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tra` (
-  `IDTra` varchar(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `IDTra` int NOT NULL AUTO_INCREMENT,
   `MaSach` varchar(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `UserName` varchar(20) NOT NULL,
   `PhoneNumber` varchar(11) DEFAULT NULL,
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-15 21:21:23
+-- Dump completed on 2021-12-18 14:57:39

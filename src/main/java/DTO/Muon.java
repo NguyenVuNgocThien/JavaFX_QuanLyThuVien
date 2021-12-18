@@ -10,14 +10,14 @@ package DTO;
  * @author dell
  */
 public class Muon {
-    private String IDMuon;
+    private int IDMuon;
     private String PhoneNumber;
     private String NgayTra;
     private String NgayMuon;
     private String MaSach;
     private String UserName;
 
-    public void setIDMuon(String IDMuon) {
+    public void setIDMuon(int IDMuon) {
         this.IDMuon = IDMuon;
     }
 
@@ -41,7 +41,7 @@ public class Muon {
         this.UserName = UserName;
     }
 
-    public String getIDMuon() {
+    public int getIDMuon() {
         return IDMuon;
     }
 
@@ -65,7 +65,7 @@ public class Muon {
         return UserName;
     }
 
-    public Muon(String IDMuon, String PhoneNumber, String NgayTra, String NgayMuon, String MaSach, String UserName) {
+    public Muon(int IDMuon, String PhoneNumber, String NgayTra, String NgayMuon, String MaSach, String UserName) {
         this.IDMuon = IDMuon;
         this.PhoneNumber = PhoneNumber;
         this.NgayTra = NgayTra;

@@ -66,7 +66,7 @@ public class DangNhapController implements Initializable {
         }
         else if(a.DangNhap_DAO(UserName,Pass)==2 && rdND.isSelected()==true){
             LayUser=txtUserName.getText();
-            App.setRoot("MuonSach");
+            App.setRoot("TrangChu");
             
         }
             

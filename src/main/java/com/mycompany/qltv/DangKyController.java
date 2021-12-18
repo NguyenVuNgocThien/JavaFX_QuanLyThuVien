@@ -47,6 +47,7 @@ public class DangKyController implements Initializable {
     @FXML private RadioButton rdGiangVien;
     @FXML private RadioButton rdSinhVien;
     @FXML private Button btDangKy;
+    @FXML private Button TroVe;
     
     private int KTraGiaTriNull(){
         if(txtUserName.getText()=="" || txtPass.getText()=="" || txtHoTen.getText()=="" || txtGmail.getText()=="" || 
@@ -131,6 +132,9 @@ public class DangKyController implements Initializable {
             JOptionPane.showMessageDialog(null, "Username bị trùng");
         }
         
+    }
+    public void btBack(ActionEvent event) throws IOException{
+        App.setRoot("DangNhap");
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

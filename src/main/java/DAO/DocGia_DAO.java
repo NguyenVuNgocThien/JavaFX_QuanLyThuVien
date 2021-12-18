@@ -107,6 +107,19 @@ public class DocGia_DAO {
         }
         return KQ;
     }
-
+    public int XoaThanhVien(DocGia dg){
+        int KQ=0;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="delete from quanlydocgia where TinhTrangThe='Disable'";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.executeUpdate();
+            KQ=1;
+            conn.commit();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return KQ;
+    }
     
 }

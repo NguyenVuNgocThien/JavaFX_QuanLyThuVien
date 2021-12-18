@@ -7,8 +7,10 @@ package com.mycompany.qltv;
 
 import DAO.Muon_DAO;
 import DAO.Sach_DAO;
+import DAO.YeuCau_DAO;
 import DTO.Muon;
 import DTO.Sach;
+import DTO.YeuCau;
 import Response.TextLimit;
 import java.io.IOException;
 import java.net.URL;
@@ -21,11 +23,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -49,13 +53,42 @@ public class MuonSachController implements Initializable {
    @FXML private TableColumn<Muon,String> PhoneNumber;
    @FXML private TableColumn<Muon,String> NgayTra;
    @FXML private TableColumn<Muon,String> NgayMuon;
+   @FXML private TableView<YeuCau> tbYeuCau;
+   @FXML private TableColumn<YeuCau,String> UserNameBangYeuCau;
+   @FXML private TableColumn<YeuCau,String> MaSachBangYeuCau;
+   @FXML private Button btYeuCauMuonSach;
    @FXML private Label US;
    @FXML private Button btTimKiem;
    @FXML private TextField txtTimKiem;
+   @FXML private Hyperlink hpBack;
     public void BTTimKiem(ActionEvent event) throws IOException, SQLException{
         this.DSSach.getItems().clear();
-       loadDSTimKiem();
+        if(txtTimKiem.getText()!="")
+        {
+               loadDSTimKiem();
+        }
+        else
+        {
+            this.DSSach.getItems().clear();
+            loadDSSach();
+        }
    }
+    public void BTYeuCau(ActionEvent event) throws SQLException{
+        YeuCau_DAO a=new YeuCau_DAO();
+        if(DSSach.getSelectionModel().getSelectedItem().getTinhTrang().equals("Borrowed"))
+            JOptionPane.showMessageDialog(null, "Sách đã được mượn");
+        else{
+            if(a.ThemYeuCau(DangNhapController.LayUser, DSSach.getSelectionModel().getSelectedItem().getMaSach() )==true){
+                loadDSYeuCau();
+                JOptionPane.showMessageDialog(null, "Thêm Yêu Cầu Thành Công,xin hãy chờ đợi kiểm duyệt");
+            }
+            else
+                 JOptionPane.showMessageDialog(null, "Thêm Thất bại");
+        }
+    }
+    public void hpVeTrangChu(ActionEvent event) throws IOException{
+        App.setRoot("TrangChu");
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -72,11 +105,24 @@ public class MuonSachController implements Initializable {
        } catch (SQLException ex) {
            Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
        }
+       this.tbYeuCau.getItems().clear();
+       try {
+           loadDSYeuCau();
+       } catch (SQLException ex) {
+           Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
+       }
        btTimKiem.setOnAction((ActionEvent event)->{
             try {
                 BTTimKiem(event);
             } catch (IOException ex) {
                 Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       });
+       btYeuCauMuonSach.setOnAction((ActionEvent event)->{
+            try {
+                BTYeuCau(event);
             } catch (SQLException ex) {
                 Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -117,5 +163,11 @@ public class MuonSachController implements Initializable {
         this.LoaiSach.setCellValueFactory(new PropertyValueFactory<Sach,String>("LoaiSach"));
         Sach_DAO a=new Sach_DAO();
         DSSach.setItems(FXCollections.observableList(a.TimKiemSach(txtTimKiem.getText())));
+    }
+    private void loadDSYeuCau() throws SQLException{
+        this.UserNameBangYeuCau.setCellValueFactory(new PropertyValueFactory<YeuCau,String>("UserName"));
+        this.MaSachBangYeuCau.setCellValueFactory(new PropertyValueFactory<YeuCau,String>("MaSach"));
+        YeuCau_DAO a=new YeuCau_DAO();
+        tbYeuCau.setItems(FXCollections.observableList(a.DSYeuCau(DangNhapController.LayUser)));
     }
 }
