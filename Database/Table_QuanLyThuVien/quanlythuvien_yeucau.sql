@@ -31,7 +31,7 @@ CREATE TABLE `yeucau` (
   KEY `UserName` (`UserName`),
   CONSTRAINT `yeucau_ibfk_1` FOREIGN KEY (`MaSach`) REFERENCES `sach` (`MaSach`),
   CONSTRAINT `yeucau_ibfk_2` FOREIGN KEY (`UserName`) REFERENCES `quanlydocgia` (`UserName`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `yeucau` (
 
 LOCK TABLES `yeucau` WRITE;
 /*!40000 ALTER TABLE `yeucau` DISABLE KEYS */;
-INSERT INTO `yeucau` VALUES (1,'098','dhthanh');
+INSERT INTO `yeucau` VALUES (1,'098','dhthanh'),(2,'124','dhthanh');
 /*!40000 ALTER TABLE `yeucau` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-18 14:57:39
+-- Dump completed on 2021-12-22 20:26:50

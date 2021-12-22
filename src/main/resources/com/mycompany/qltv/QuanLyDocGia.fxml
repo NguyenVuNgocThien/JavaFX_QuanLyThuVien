@@ -30,7 +30,7 @@
          </font>
       </Label>
       <Button fx:id="btXoa" layoutX="84.0" layoutY="440.0" mnemonicParsing="false" onAction="#btXoaThanhVien" prefHeight="35.0" prefWidth="83.0" text="Xóa" />
-      <Button fx:id="btQLMuon" layoutX="345.0" layoutY="440.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Quản Lý Mượn Sách" />
+      <Button fx:id="btQLMuon" layoutX="345.0" layoutY="440.0" mnemonicParsing="false" onAction="#btQuanLyMuonSach" prefHeight="35.0" prefWidth="150.0" text="Quản Lý Mượn Sách" />
       <Button fx:id="btQLTra" layoutX="605.0" layoutY="440.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Quản Lý Trả Sách" />
    </children>
 </AnchorPane>

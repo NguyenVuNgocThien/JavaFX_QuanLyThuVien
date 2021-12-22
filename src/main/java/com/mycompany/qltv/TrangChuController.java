@@ -22,8 +22,12 @@ public class TrangChuController implements Initializable {
 
     @FXML private Hyperlink hpMuonSach;
     @FXML private Hyperlink hpTraSach;
+    @FXML private Hyperlink hpVeDangNhap;
     public void clickMuonSach(ActionEvent event) throws IOException{
         App.setRoot("MuonSach");
+    }
+    public void clickVeDangNhap(ActionEvent event) throws IOException{
+        App.setRoot("DangNhap");
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

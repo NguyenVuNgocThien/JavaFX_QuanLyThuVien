@@ -46,15 +46,27 @@ public class QuanLyDocGiaController implements Initializable  {
    @FXML private Button btXoa;
    @FXML private Button btQLMuon;
    @FXML private Button btQLTra;
+   public static String LayUser;
    public void btXoaThanhVien(ActionEvent event) throws SQLException{
        DocGia_DAO a=new DocGia_DAO();
-       if(a.XoaThanhVien(DSDocGia.getSelectionModel().getSelectedItem())==1 )
+       if(DSDocGia.getSelectionModel().getSelectedItem().getUserName()!="Disable" )
        {
-           JOptionPane.showMessageDialog(null, "Xóa Thành Công");
-           loadDSDocGia();
+           JOptionPane.showMessageDialog(null, "Thẻ chưa hết hạn,Không được xóa thành viên");
        }
        else
-           JOptionPane.showMessageDialog(null, "Xóa Thất bại,Thành Viên Chưa Hết hạn");
+       {
+           if(a.XoaThanhVien(DSDocGia.getSelectionModel().getSelectedItem().getUserName())==true)
+           {
+               JOptionPane.showMessageDialog(null, "Xóa Thành Công");
+               loadDSDocGia();
+           }
+           else
+               JOptionPane.showMessageDialog(null, "Xóa Thất Bại");
+       }
+   }
+   public void btQuanLyMuonSach(ActionEvent event) throws IOException{
+       LayUser=DocGia_DAO.dsUS.get(DSDocGia.getSelectionModel().getSelectedIndex());
+       App.setRoot("QuanLyMuonSach");
    }
    @Override
    public void initialize  (URL url,ResourceBundle rb){

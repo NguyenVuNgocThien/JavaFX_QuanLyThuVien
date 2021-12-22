@@ -141,6 +141,8 @@ public class DangKyController implements Initializable {
         // TODO
         txtUserName.setlimit(8);
         txtHoTen.setlimit(45);
+        txtTinhTrang.setText("Enable");
+        txtTinhTrang.setEditable(false);
     }    
     
 }

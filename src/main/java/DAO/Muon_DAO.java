@@ -39,4 +39,19 @@ public class Muon_DAO {
         }
         return dsMuon;
     }
+    public int DemSLSach(String UserName) throws SQLException{
+        int SL=0;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="select count(IDMuon) as SL from muon where UserName=?";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1, UserName);
+            ResultSet rs=stm.executeQuery();
+            while(rs.next()){
+            SL=Integer.parseInt( rs.getString("SL"));
+            }
+        }
+        System.out.println(SL);
+        return SL;
+    }
 }

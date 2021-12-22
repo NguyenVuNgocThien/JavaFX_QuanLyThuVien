@@ -75,8 +75,9 @@ public class MuonSachController implements Initializable {
    }
     public void BTYeuCau(ActionEvent event) throws SQLException{
         YeuCau_DAO a=new YeuCau_DAO();
-        if(DSSach.getSelectionModel().getSelectedItem().getTinhTrang().equals("Borrowed"))
-            JOptionPane.showMessageDialog(null, "Sách đã được mượn");
+        Muon_DAO b=new Muon_DAO();
+        if(DSSach.getSelectionModel().getSelectedItem().getTinhTrang().equals("Borrowed") || b.DemSLSach(DangNhapController.LayUser)>2)
+            JOptionPane.showMessageDialog(null, "Sách đã được mượn hoặc bạn mượn quá 2 quyển sách");
         else{
             if(a.ThemYeuCau(DangNhapController.LayUser, DSSach.getSelectionModel().getSelectedItem().getMaSach() )==true){
                 loadDSYeuCau();

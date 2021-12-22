@@ -38,16 +38,18 @@ public class YeuCau_DAO {
         }
         return yc;
     }
- 
-    
     public boolean ThemYeuCau(String UserName,String MaSach) throws SQLException{
         boolean KQ=false;
         try(Connection conn=ConnectionClass.getConn()){
-            String query="insert into yeucau(UserName,MaSach) values(?,?)";
+            String query="insert into yeucau(UserName,MaSach)\n" +
+                         "select q.UserName,s.MaSach\n" +
+                         "from quanlydocgia q,sach s\n" +
+                         "where q.UserName=? and s.MaSach=? and not exists(select * from yeucau where MaSach=?)";
             conn.setAutoCommit(false);
             PreparedStatement stm=conn.prepareStatement(query);
             stm.setString(1, UserName);
             stm.setString(2, MaSach);
+            stm.setString(3, MaSach);
             stm.executeUpdate();
             KQ=true;
             conn.commit();

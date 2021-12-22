@@ -24,9 +24,9 @@ import javafx.scene.text.TextFlow;
  * @author dell
  */
 public class DocGia_DAO {
-    
+    public static List<String> dsUS;
     public  DocGia_DAO(){
-        
+        dsUS=new ArrayList<>();
     }
     public List<DocGia> DanhSachDocGia() throws SQLException{
         List<DocGia> dsDocGia=new ArrayList<>();
@@ -37,7 +37,7 @@ public class DocGia_DAO {
         while(rs.next()){
             DocGia a=new DocGia(rs.getString("TenDocGia"), rs.getString("NgaySinh"), rs.getString("ChucVu"), 
                     rs.getString("TinhTrangThe"), rs.getString("Gmail"),rs.getString("GioiTinh"),rs.getString("SDT"),rs.getString("Khoa"));
-          
+            dsUS.add(rs.getString("UserName"));
             dsDocGia.add(a);
         }
         }
@@ -107,14 +107,15 @@ public class DocGia_DAO {
         }
         return KQ;
     }
-    public int XoaThanhVien(DocGia dg){
-        int KQ=0;
+    public boolean XoaThanhVien(String UserName){
+        boolean KQ=false;
         try(Connection conn=ConnectionClass.getConn()){
-            String query="delete from quanlydocgia where TinhTrangThe='Disable'";
+            String query="delete from quanlydocgia where UserName=? )";
             conn.setAutoCommit(false);
             PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1,UserName);
             stm.executeUpdate();
-            KQ=1;
+            KQ=true;
             conn.commit();
         }catch(SQLException ex){
             ex.printStackTrace();

@@ -29,6 +29,7 @@ CREATE TABLE `tra` (
   `PhoneNumber` varchar(11) DEFAULT NULL,
   `NgayTra` datetime DEFAULT NULL,
   `NgayMuon` datetime DEFAULT NULL,
+  `TinhTrang` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`IDTra`,`MaSach`,`UserName`),
   KEY `MaSach` (`MaSach`),
   KEY `UserName` (`UserName`),
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-18 14:57:39
+-- Dump completed on 2021-12-22 20:26:49
