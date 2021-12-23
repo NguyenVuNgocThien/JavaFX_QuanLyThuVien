@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,7 +52,53 @@ public class Muon_DAO {
             SL=Integer.parseInt( rs.getString("SL"));
             }
         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
         System.out.println(SL);
         return SL;
+    }
+    public boolean XoaYeuCau(String MaSach) throws SQLException{
+        boolean KQ=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="delete from yeucau where MaSach=? ";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1,MaSach);
+            stm.executeUpdate();
+            KQ=true;
+            conn.commit();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            KQ=false;
+        }
+        return KQ;
+    }
+    public boolean ThemMuon(String UserName,String MaSach,String NgayMuon,String NgayTra) throws SQLException{
+        boolean KQ=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="insert into muon(PhoneNumber,NgayTra,NgayMuon,MaSach,UserName)\n" +
+                         "select  q.SDT,?,?,s.MaSach,q.UserName\n" +
+                         "from quanlydocgia q,sach s\n" +
+                         "where q.UserName=? and s.MaSach=? \n" +
+                         "and exists(select * from yeucau where UserName=q.UserName and MaSach=s.MaSach)\n" +
+                         "and not exists(select * from muon where  MaSach=s.MaSach)";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(3, UserName);
+            stm.setString(4,MaSach);
+            stm.setString(1, NgayTra);
+            stm.setString(2, NgayMuon);
+            stm.executeUpdate();
+            KQ=true;
+            conn.commit();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            KQ=false;
+        }
+        
+        return KQ;
     }
 }

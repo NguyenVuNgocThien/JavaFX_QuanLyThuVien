@@ -54,6 +54,10 @@ public class YeuCau_DAO {
             KQ=true;
             conn.commit();
         }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            KQ=false;
+        }
         return KQ;
     }
 }

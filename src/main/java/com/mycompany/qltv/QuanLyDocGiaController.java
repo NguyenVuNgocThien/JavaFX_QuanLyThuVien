@@ -47,6 +47,7 @@ public class QuanLyDocGiaController implements Initializable  {
    @FXML private Button btQLMuon;
    @FXML private Button btQLTra;
    public static String LayUser;
+   public static String LaySDT;
    public void btXoaThanhVien(ActionEvent event) throws SQLException{
        DocGia_DAO a=new DocGia_DAO();
        if(DSDocGia.getSelectionModel().getSelectedItem().getUserName()!="Disable" )
@@ -66,6 +67,7 @@ public class QuanLyDocGiaController implements Initializable  {
    }
    public void btQuanLyMuonSach(ActionEvent event) throws IOException{
        LayUser=DocGia_DAO.dsUS.get(DSDocGia.getSelectionModel().getSelectedIndex());
+       LaySDT=DSDocGia.getSelectionModel().getSelectedItem().getSDT();
        App.setRoot("QuanLyMuonSach");
    }
    @Override

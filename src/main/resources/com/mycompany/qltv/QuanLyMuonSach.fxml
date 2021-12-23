@@ -47,8 +47,8 @@
       </Label>
       <Label layoutX="204.0" layoutY="132.0" prefHeight="17.0" prefWidth="95.0" text="Ngày Mượn Sách" />
       <Label layoutX="204.0" layoutY="163.0" text="Ngày Trả Sách" />
-      <DatePicker layoutX="311.0" layoutY="128.0" />
-      <DatePicker layoutX="311.0" layoutY="159.0" />
-      <Button layoutX="434.0" layoutY="204.0" mnemonicParsing="false" text="Access" />
+      <DatePicker fx:id="dtNgayMuon" layoutX="311.0" layoutY="128.0" />
+      <DatePicker fx:id="dtNgayTra" layoutX="311.0" layoutY="159.0" />
+      <Button fx:id="btAccess" layoutX="434.0" layoutY="204.0" mnemonicParsing="false" onAction="#btAccess" text="Access" />
   </children>
 </AnchorPane>

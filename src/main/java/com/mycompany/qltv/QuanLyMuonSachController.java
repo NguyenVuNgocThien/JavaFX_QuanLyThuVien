@@ -11,12 +11,16 @@ import DAO.YeuCau_DAO;
 import DTO.Muon;
 import DTO.Sach;
 import DTO.YeuCau;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,6 +28,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -45,6 +50,24 @@ public class QuanLyMuonSachController implements Initializable {
    @FXML private DatePicker dtNgayTra;
    @FXML private DatePicker dtNgayMuon;
    @FXML private Button btAccess;
+   
+   public void btAccess(ActionEvent event) throws SQLException{
+       Date sqlDate1=Date.valueOf(dtNgayMuon.getValue());
+       SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       String NgayMuon=sdf1.format(sqlDate1);
+       Date sqlDate2=Date.valueOf(dtNgayTra.getValue());
+       SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+       String NgayTra=sdf2.format(sqlDate2);
+       Muon_DAO a=new Muon_DAO();
+       if(a.ThemMuon(QuanLyDocGiaController.LayUser, tbYeuCau.getSelectionModel().getSelectedItem().getMaSach(), NgayMuon, NgayTra)==true 
+               && a.XoaYeuCau(tbYeuCau.getSelectionModel().getSelectedItem().getMaSach())){
+           JOptionPane.showMessageDialog(null, "Access thành công");
+           loadDSMuon();
+           loadDSYeuCau();
+       }
+       else
+           JOptionPane.showMessageDialog(null, "Access Thất Bại");
+   }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.DSMuon.getItems().clear();
@@ -59,6 +82,13 @@ public class QuanLyMuonSachController implements Initializable {
        } catch (SQLException ex) {
            Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
        }
+       btAccess.setOnAction((ActionEvent event)->{
+            try {
+                btAccess(event);
+            } catch (SQLException ex) {
+                Logger.getLogger(MuonSachController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       });
     }    
     private void loadDSMuon() throws SQLException{
         System.out.println(QuanLyDocGiaController.LayUser);
