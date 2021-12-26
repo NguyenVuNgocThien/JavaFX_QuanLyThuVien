@@ -48,6 +48,7 @@ public class QuanLyDocGiaController implements Initializable  {
    @FXML private Button btQLTra;
    public static String LayUser;
    public static String LaySDT;
+   App app=new App();
    public void btXoaThanhVien(ActionEvent event) throws SQLException{
        DocGia_DAO a=new DocGia_DAO();
        if(DSDocGia.getSelectionModel().getSelectedItem().getUserName()!="Disable" )
@@ -66,9 +67,13 @@ public class QuanLyDocGiaController implements Initializable  {
        }
    }
    public void btQuanLyMuonSach(ActionEvent event) throws IOException{
+       if(DSDocGia.getSelectionModel().getSelectedItem()!=null){
        LayUser=DocGia_DAO.dsUS.get(DSDocGia.getSelectionModel().getSelectedIndex());
        LaySDT=DSDocGia.getSelectionModel().getSelectedItem().getSDT();
-       App.setRoot("QuanLyMuonSach");
+       app.SwicthScene(event, "QuanLyMuonSach");
+       }
+       else
+           JOptionPane.showMessageDialog(null, "Chưa chọn người dùng");
    }
    @Override
    public void initialize  (URL url,ResourceBundle rb){

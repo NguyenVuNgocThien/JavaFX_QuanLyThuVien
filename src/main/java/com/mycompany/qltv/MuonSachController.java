@@ -61,6 +61,7 @@ public class MuonSachController implements Initializable {
    @FXML private Button btTimKiem;
    @FXML private TextField txtTimKiem;
    @FXML private Hyperlink hpBack;
+   App app=new App();
     public void BTTimKiem(ActionEvent event) throws IOException, SQLException{
         this.DSSach.getItems().clear();
         if(txtTimKiem.getText()!="")
@@ -76,6 +77,7 @@ public class MuonSachController implements Initializable {
     public void BTYeuCau(ActionEvent event) throws SQLException{
         YeuCau_DAO a=new YeuCau_DAO();
         Muon_DAO b=new Muon_DAO();
+        if(DSSach.getSelectionModel().getSelectedItem()!=null){
         if(DSSach.getSelectionModel().getSelectedItem().getTinhTrang().equals("Borrowed") || b.DemSLSach(DangNhapController.LayUser)>2)
             JOptionPane.showMessageDialog(null, "Sách đã được mượn hoặc bạn mượn quá 2 quyển sách");
         else{
@@ -86,9 +88,12 @@ public class MuonSachController implements Initializable {
             else
                  JOptionPane.showMessageDialog(null, "Thêm Thất bại");
         }
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Chưa Chọn Sách ");
     }
     public void hpVeTrangChu(ActionEvent event) throws IOException{
-        App.setRoot("TrangChu");
+        app.SwicthScene(event, "TrangChu");
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

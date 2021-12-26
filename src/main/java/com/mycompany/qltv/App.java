@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import static javafx.application.Application.launch;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 
 /**
  * JavaFX App
@@ -20,7 +22,9 @@ import static javafx.application.Application.launch;
 public class App extends Application {
 
     private static Scene scene;
-
+    private Scene sc;
+    private Stage st;
+    private Parent rt;
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("DangNhap"));
@@ -39,6 +43,13 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+     public void SwicthScene(ActionEvent event,String fxml) throws IOException{
+        Parent rt=FXMLLoader.load(getClass().getResource(fxml+".fxml"));
+        st=(Stage)((Node)event.getSource()).getScene().getWindow();
+        sc=new Scene(rt);
+        st.setScene(sc);
+        st.show();
     }
 
     

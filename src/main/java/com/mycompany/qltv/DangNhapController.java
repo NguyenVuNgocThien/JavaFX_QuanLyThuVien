@@ -41,7 +41,7 @@ public class DangNhapController implements Initializable {
     @FXML private Button btDangNhap;
     @FXML private Button btDangKy;
     public static String LayUser;
-    
+    App app=new App();
    
     public void BTclickDangNhap(ActionEvent event) throws IOException, SQLException{
         DocGia_DAO a=new DocGia_DAO();
@@ -62,11 +62,11 @@ public class DangNhapController implements Initializable {
             JOptionPane.showMessageDialog(null, "Sai User hoặc mật khẩu");
         else if(a.DangNhap_DAO(UserName,Pass)==1 && rdQL.isSelected()==true)
         {
-            App.setRoot("QuanLyDocGia");
+            app.SwicthScene(event, "QuanLyDocGia");
         }
         else if(a.DangNhap_DAO(UserName,Pass)==2 && rdND.isSelected()==true){
             LayUser=txtUserName.getText();
-            App.setRoot("TrangChu");
+            app.SwicthScene(event, "TrangChu");
             
         }
             
@@ -74,7 +74,7 @@ public class DangNhapController implements Initializable {
    
     
     public void BTclickDangKy(ActionEvent event) throws IOException{
-        App.setRoot("DangKy");
+        app.SwicthScene(event, "DangKy");
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

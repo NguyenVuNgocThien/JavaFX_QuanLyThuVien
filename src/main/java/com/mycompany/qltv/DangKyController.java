@@ -48,7 +48,7 @@ public class DangKyController implements Initializable {
     @FXML private RadioButton rdSinhVien;
     @FXML private Button btDangKy;
     @FXML private Button TroVe;
-    
+    App app=new App();
     private int KTraGiaTriNull(){
         if(txtUserName.getText()=="" || txtPass.getText()=="" || txtHoTen.getText()=="" || txtGmail.getText()=="" || 
                 txtTinhTrang.getText()=="" || txtKhoa.getText()=="" )
@@ -134,7 +134,7 @@ public class DangKyController implements Initializable {
         
     }
     public void btBack(ActionEvent event) throws IOException{
-        App.setRoot("DangNhap");
+        app.SwicthScene(event, "DangNhap");
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
