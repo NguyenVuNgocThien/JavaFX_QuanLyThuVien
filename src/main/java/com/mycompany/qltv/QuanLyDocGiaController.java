@@ -51,6 +51,7 @@ public class QuanLyDocGiaController implements Initializable  {
    App app=new App();
    public void btXoaThanhVien(ActionEvent event) throws SQLException{
        DocGia_DAO a=new DocGia_DAO();
+       if(DSDocGia.getSelectionModel().getSelectedItem()!=null){
        if(DSDocGia.getSelectionModel().getSelectedItem().getUserName()!="Disable" )
        {
            JOptionPane.showMessageDialog(null, "Thẻ chưa hết hạn,Không được xóa thành viên");
@@ -64,7 +65,9 @@ public class QuanLyDocGiaController implements Initializable  {
            }
            else
                JOptionPane.showMessageDialog(null, "Xóa Thất Bại");
-       }
+       }}
+       else
+           JOptionPane.showMessageDialog(null, "Chưa chọn người dùng");
    }
    public void btQuanLyMuonSach(ActionEvent event) throws IOException{
        if(DSDocGia.getSelectionModel().getSelectedItem()!=null){

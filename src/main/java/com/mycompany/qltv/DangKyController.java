@@ -49,24 +49,24 @@ public class DangKyController implements Initializable {
     @FXML private Button btDangKy;
     @FXML private Button TroVe;
     App app=new App();
-    private int KTraGiaTriNull(){
+    public int KTraGiaTriNull(){
         if(txtUserName.getText()=="" || txtPass.getText()=="" || txtHoTen.getText()=="" || txtGmail.getText()=="" || 
                 txtTinhTrang.getText()=="" || txtKhoa.getText()=="" )
             return 1;
         else
             return 0;
     }
-    private int DinhDangMail(){
+    public int DinhDangMail(String input){
         int KQ=0;
-        int a=txtGmail.getText().indexOf("@");
+        int a=input.indexOf("@");
         String b="@ou.edu.vn";
-        System.out.println(txtGmail.getText().substring(a));
-        if(!txtGmail.getText().substring(a).equals(b))
+        System.out.println(input.substring(a));
+        if(!input.substring(a).equals(b))
             KQ=1;
         return KQ;
     }
     
-    private int KTraRangBuoc(String input){
+    public int KTraRangBuoc(String input){
         int KQ=0;
         int demKySo=0;
         int demKyTu=0;
@@ -100,7 +100,7 @@ public class DangKyController implements Initializable {
             JOptionPane.showMessageDialog(null, "Mật khẩu không đúng cú pháp");
         else if(KTraRangBuoc(txtHoTen.getText())==1)
             JOptionPane.showMessageDialog(null, "Họ Tên không đúng cú pháp");
-        else if(DinhDangMail()==1)
+        else if(DinhDangMail(txtGmail.getText())==1)
             JOptionPane.showMessageDialog(null, "Sai định dạng mail");
         else {
         DocGia_DAO a=new DocGia_DAO();

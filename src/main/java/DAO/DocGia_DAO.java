@@ -89,6 +89,7 @@ public class DocGia_DAO {
             conn.commit();
         } catch (SQLException ex) {
             ex.printStackTrace();
+            kq=false;
         }
         return kq;
     }

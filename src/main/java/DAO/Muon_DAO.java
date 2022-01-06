@@ -58,13 +58,14 @@ public class Muon_DAO {
         System.out.println(SL);
         return SL;
     }
-    public boolean XoaYeuCau(String MaSach) throws SQLException{
+    public boolean XoaYeuCau(String MaSach,String UserName) throws SQLException{
         boolean KQ=false;
         try(Connection conn=ConnectionClass.getConn()){
-            String query="delete from yeucau where MaSach=? ";
+            String query="delete from yeucau where MaSach=? and UserName=? ";
             conn.setAutoCommit(false);
             PreparedStatement stm=conn.prepareStatement(query);
             stm.setString(1,MaSach);
+            stm.setString(2,UserName);
             stm.executeUpdate();
             KQ=true;
             conn.commit();

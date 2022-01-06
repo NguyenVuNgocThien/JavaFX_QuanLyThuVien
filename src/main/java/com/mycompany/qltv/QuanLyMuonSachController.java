@@ -16,6 +16,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,7 +53,33 @@ public class QuanLyMuonSachController implements Initializable {
    @FXML private DatePicker dtNgayMuon;
    @FXML private Button btAccess;
    
+   public int RangBuocNgayThangMuon(LocalDate dt){
+       int kq=0;
+       LocalDate now=LocalDate.now();
+       LocalDate NgayMuon=dt;
+       System.out.println(now.getDayOfMonth());
+       System.out.println(NgayMuon.getDayOfMonth());
+       if(NgayMuon.getDayOfMonth()>now.getDayOfMonth() && NgayMuon.getMonthValue()>=now.getMonthValue() && NgayMuon.getYear()>=now.getYear())
+           kq=1;
+       return kq;
+   }
+   public int RangBuocNgayThangTra(LocalDate dtMuon,LocalDate dtTra){
+       int kq=0;
+       LocalDate NgayTra=dtTra;
+       LocalDate NgayMuon=dtMuon;
+       System.out.println(NgayTra.getDayOfMonth());
+       System.out.println(NgayMuon.getDayOfMonth());
+       if(NgayMuon.getDayOfMonth()<NgayTra.getDayOfMonth() && NgayMuon.getMonthValue()<=NgayTra.getMonthValue() && NgayMuon.getYear()<=NgayTra.getYear())
+           kq=1;
+       return kq;
+   }
    public void btAccess(ActionEvent event) throws SQLException{
+       if(RangBuocNgayThangMuon(dtNgayMuon.getValue())==1)
+           JOptionPane.showMessageDialog(null, "Ngày mượn nhỏ hơn ngày hiện tại");
+       else if(RangBuocNgayThangMuon(dtNgayTra.getValue())==0)
+                JOptionPane.showMessageDialog(null, "Ngày trả phải lớn hơn ngày mượn");
+       else
+       {
        Date sqlDate1=Date.valueOf(dtNgayMuon.getValue());
        SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
        String NgayMuon=sdf1.format(sqlDate1);
@@ -60,13 +88,14 @@ public class QuanLyMuonSachController implements Initializable {
        String NgayTra=sdf2.format(sqlDate2);
        Muon_DAO a=new Muon_DAO();
        if(a.ThemMuon(QuanLyDocGiaController.LayUser, tbYeuCau.getSelectionModel().getSelectedItem().getMaSach(), NgayMuon, NgayTra)==true 
-               && a.XoaYeuCau(tbYeuCau.getSelectionModel().getSelectedItem().getMaSach())){
+               && a.XoaYeuCau(tbYeuCau.getSelectionModel().getSelectedItem().getMaSach(),QuanLyDocGiaController.LayUser)){
            JOptionPane.showMessageDialog(null, "Access thành công");
            loadDSMuon();
            loadDSYeuCau();
        }
        else
            JOptionPane.showMessageDialog(null, "Access Thất Bại");
+       }
    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
