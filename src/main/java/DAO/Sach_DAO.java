@@ -36,13 +36,15 @@ public class Sach_DAO {
         }
         return dsSach;
     }
-    public List<Sach> TimKiemSach(String TenTacGia) throws SQLException{
+    public List<Sach> TimKiemSach(String input) throws SQLException{
         List<Sach> dsSach=new ArrayList<>();
         try(Connection conn=ConnectionClass.getConn()){
-            String query="select * from sach where TenTacGia=?";
+            String query="select * from sach where TenTacGia=? or MaSach=? or TenSach=?";
             conn.setAutoCommit(false);
             PreparedStatement stm=conn.prepareStatement(query);
-            stm.setString(1, TenTacGia);
+            stm.setString(1, input);
+            stm.setString(2, input);
+            stm.setString(3, input);
             ResultSet rs= stm.executeQuery();
             while(rs.next()){
             Sach a=new Sach(rs.getString("MaSach"),rs.getString("TenSach"),rs.getString("TenTacGia"),rs.getString("MoTaSach"),
