@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="183.0" prefWidth="490.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.TrangChuQuanLyController">
+    <stylesheets>
+        <URL value="@trangchuquanly.css" />
+    </stylesheets>
+   <children>
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="1.0" prefHeight="44.0" prefWidth="600.0" text="Trang Chủ">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Hyperlink fx:id="hpDocGia" layoutX="7.0" layoutY="71.0" onAction="#clickDocGia" prefHeight="33.0" prefWidth="98.0" text="Quản Lý Độc Giả" />
+      <Hyperlink fx:id="hpKhoSach" layoutX="4.0" layoutY="111.0" onAction="#clickKhoSach" text="Quản Lý Kho Sách" />
+      <Hyperlink fx:id="hpVeDangNhap" layoutX="7.0" layoutY="143.0" onAction="#clickVeDangNhap" text="Về Đăng Nhập" />
+   </children>
+</AnchorPane>

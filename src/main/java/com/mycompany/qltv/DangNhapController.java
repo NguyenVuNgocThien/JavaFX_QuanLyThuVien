@@ -62,7 +62,7 @@ public class DangNhapController implements Initializable {
             JOptionPane.showMessageDialog(null, "Sai User hoặc mật khẩu");
         else if(a.DangNhap_DAO(UserName,Pass)==1 && rdQL.isSelected()==true)
         {
-            app.SwicthScene(event, "QuanLyDocGia");
+            app.SwicthScene(event, "TrangChuQuanLy");
         }
         else if(a.DangNhap_DAO(UserName,Pass)==2 && rdND.isSelected()==true){
             LayUser=txtUserName.getText();

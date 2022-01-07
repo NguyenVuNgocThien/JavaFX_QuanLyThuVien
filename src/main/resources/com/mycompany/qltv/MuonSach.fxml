@@ -37,7 +37,7 @@
             <TableColumn fx:id="PhoneNumber" prefWidth="126.00006103515625" text="PhoneNumber" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="61.0" prefWidth="1394.0" text="Quản Lý Mượn Sách" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="61.0" prefWidth="1394.0" text="Mượn Sách" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>

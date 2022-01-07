@@ -74,6 +74,7 @@ public class QuanLyMuonSachController implements Initializable {
        return kq;
    }
    public void btAccess(ActionEvent event) throws SQLException{
+       Sach_DAO s=new Sach_DAO();
        if(RangBuocNgayThangMuon(dtNgayMuon.getValue())==1)
            JOptionPane.showMessageDialog(null, "Ngày mượn nhỏ hơn ngày hiện tại");
        else if(RangBuocNgayThangMuon(dtNgayTra.getValue())==0)
@@ -90,6 +91,7 @@ public class QuanLyMuonSachController implements Initializable {
        if(a.ThemMuon(QuanLyDocGiaController.LayUser, tbYeuCau.getSelectionModel().getSelectedItem().getMaSach(), NgayMuon, NgayTra)==true 
                && a.XoaYeuCau(tbYeuCau.getSelectionModel().getSelectedItem().getMaSach(),QuanLyDocGiaController.LayUser)){
            JOptionPane.showMessageDialog(null, "Access thành công");
+           s.CapNhatSachDangMuon(tbYeuCau.getSelectionModel().getSelectedItem().getMaSach());
            loadDSMuon();
            loadDSYeuCau();
        }

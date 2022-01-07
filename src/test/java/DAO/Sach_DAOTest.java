@@ -75,5 +75,53 @@ public class Sach_DAOTest {
         }
         assertEquals(true, result);
     }
-    
+    @Test
+    public void testKTMaSach(){
+        boolean result=false;
+        s=new Sach_DAO();
+        if(s.KTMaSach("098"))
+            result=true;
+        assertEquals(true, result);
+    }
+    @Test
+    public void testThemSach(){
+        boolean result=false;
+        s=new Sach_DAO();
+        Sach a=new Sach();
+        a.setMaSach("111");
+        a.setTenSach("Liar");
+        a.setTenTacGia("J.K.L");
+        a.setTinhTrang("Available");
+        if(s.ThemSach(a))
+            result=true;
+        assertEquals(true, result);
+    }
+    @Test
+    public void testSuaSach(){
+        boolean result=false;
+        s=new Sach_DAO();
+        Sach a=new Sach();
+        a.setMaSach("111");
+        a.setTenSach("Liar");
+        a.setTenTacGia("J.K.L");
+        if(s.SuaSach(a))
+            result=true;
+        assertEquals(true, result);
+    }
+    @Test 
+    public void testXoaSach(){
+        boolean result=false;
+        s=new Sach_DAO();
+        if(s.XoaSach("111"))
+            result=true;
+        assertEquals(true, result);
+    }
+    @Test 
+    public void testSachDangMuon(){
+        boolean result=false;
+        s=new Sach_DAO();
+        if(s.CapNhatSachDangMuon("048"))
+            result=true;
+        assertEquals(true, result);
+    }
 }

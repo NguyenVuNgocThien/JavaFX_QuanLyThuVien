@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -54,5 +56,96 @@ public class Sach_DAO {
             conn.commit();
         }
         return dsSach;
+    }
+    public boolean KTMaSach(String MaSach){
+        boolean kq=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="select * from sach ";
+            Statement st=conn.createStatement();
+            ResultSet rs=st.executeQuery(query);
+            while (rs.next()){
+                 if(rs.getString("MaSach").equals(MaSach))
+                     kq=true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Sach_DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return kq;
+    }
+    public boolean ThemSach(Sach s){
+        boolean kq=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="insert into Sach(MaSach,TenSach,TenTacGia,TinhTrang) values(?,?,?,?)";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1, s.getMaSach());
+            stm.setString(2, s.getTenSach());
+            stm.setString(4, s.getTinhTrang());
+            stm.setString(3, s.getTenTacGia());
+            stm.executeUpdate();
+            kq=true;
+            conn.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sach_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            kq=false;
+        }
+        return kq;
+    }
+    public boolean SuaSach(Sach s){
+        boolean kq=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="update sach"
+                    + "   set TenSach=?,TenTacGia=?"
+                    + "   where MaSach=?";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(3, s.getMaSach());
+            stm.setString(1, s.getTenSach());
+            stm.setString(2, s.getTenTacGia());
+            stm.executeUpdate();
+            kq=true;
+            conn.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sach_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            kq=false;
+        }
+        return kq;
+    }
+    public boolean XoaSach(String MaSach){
+        boolean kq=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="delete from sach"
+                    + "   where MaSach=? and TinhTrang<>\"Borrowed\"\n"
+                    + "   and not exists(select * from yeucau where MaSach=?)";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1, MaSach);
+            stm.setString(2, MaSach);
+            stm.executeUpdate();
+            kq=true;
+            conn.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sach_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            kq=false;
+        }
+        return kq;
+    }
+    public boolean CapNhatSachDangMuon(String MaSach){
+        boolean kq=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="update sach \n" +
+                         "set TinhTrang=\"Borrowed\"\n" +
+                         "where sach.MaSach=? and exists(select *from muon where sach.MaSach=muon.MaSach)";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1, MaSach);
+            stm.executeUpdate();
+            kq=true;
+            conn.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(Sach_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            kq=false;
+        }
+        return kq;
     }
 }
