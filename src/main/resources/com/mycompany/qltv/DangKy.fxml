@@ -4,7 +4,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -48,11 +47,11 @@
       <Label alignment="CENTER" prefHeight="17.0" prefWidth="105.0" text="Tình Trạng Thẻ" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
       <Label alignment="CENTER" prefHeight="17.0" prefWidth="121.0" text="Khoa" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <TextLimit fx:id="txtUserName" styleClass="UserName" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-      <TextField fx:id="txtPass" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+      <TextLimit fx:id="txtPass" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       <TextLimit fx:id="txtHoTen" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <TextField fx:id="txtSDT" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" />
-      <TextField fx:id="txtGmail" prefHeight="25.0" prefWidth="164.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
-      <TextField fx:id="txtTinhTrang" prefHeight="25.0" prefWidth="215.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+      <TextLimit fx:id="txtSDT" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+      <TextLimit fx:id="txtGmail" prefHeight="25.0" prefWidth="164.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+      <TextLimit fx:id="txtTinhTrang" prefHeight="25.0" prefWidth="215.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" />
       <DatePicker fx:id="dtNgaySinh" prefHeight="25.0" prefWidth="294.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
       <RadioButton fx:id="rdNam" mnemonicParsing="false" selected="true" text="Nam" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <toggleGroup>
@@ -64,8 +63,14 @@
             <ToggleGroup fx:id="ChucVu" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="rdSinhVien" mnemonicParsing="false" text="Sinh Viên" toggleGroup="$ChucVu" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-      <TextField fx:id="txtKhoa" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
       <Button fx:id="btDangKy" mnemonicParsing="false" onAction="#butDangKy" prefHeight="25.0" prefWidth="221.0" text="Đăng Ký Tài Khoản" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
       <Button fx:id="TroVe" mnemonicParsing="false" onAction="#btBack" prefHeight="25.0" prefWidth="81.0" text="Trở Về" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+      <RadioButton fx:id="rdCNTT" mnemonicParsing="false" text="CNTT" GridPane.columnIndex="4" GridPane.rowIndex="5">
+         <toggleGroup>
+            <ToggleGroup fx:id="Khoa" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rdKinhTe" mnemonicParsing="false" text="Kinh Tế" toggleGroup="$Khoa" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+      <RadioButton fx:id="rdXayDung" mnemonicParsing="false" text="Xây dựng" toggleGroup="$Khoa" GridPane.columnIndex="6" GridPane.rowIndex="5" />
    </children>
 </GridPane>

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import Response.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="1402.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.QuanLyKhoSachController">
     <stylesheets>
@@ -50,11 +51,11 @@
             <Label prefHeight="17.0" prefWidth="88.0" text="Mã Sách" />
             <Label text="Tên Sách" GridPane.rowIndex="1" />
             <Label text="Tình Trạng" GridPane.rowIndex="2" />
-            <TextField fx:id="txtMaSach" GridPane.columnIndex="1" />
-            <TextField fx:id="txtTenSach" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtTT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextLimit fx:id="txtMaSach" GridPane.columnIndex="1" />
+            <TextLimit fx:id="txtTenSach" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Tên Tác Giả" GridPane.rowIndex="3" />
-            <TextField fx:id="txtTenTacGia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextLimit fx:id="txtTenTacGia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtTT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="btThem" layoutX="433.0" layoutY="348.0" mnemonicParsing="false" onAction="#butThem" text="Thêm" />

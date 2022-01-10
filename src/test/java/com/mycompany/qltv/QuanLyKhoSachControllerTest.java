@@ -25,13 +25,13 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author dell
  */
-public class DangKyControllerTest {
+public class QuanLyKhoSachControllerTest {
     
     private static Connection conn;
-    public DangKyControllerTest() {
+    public QuanLyKhoSachControllerTest() {
     }
     
-   @BeforeEach
+    @BeforeEach
     public void setUp() {
         try {
             conn=ConnectionClass.getConn();
@@ -50,44 +50,38 @@ public class DangKyControllerTest {
     }
 
     /**
-     * Test of DinhDangMail method, of class DangKyController.
+     * Test of KTMaSach method, of class QuanLyKhoSachController.
      */
     @Test
-    public void testDinhDangMail() {
-        System.out.println("DinhDangMail");
-        DangKyController instance = new DangKyController();
+    public void testKTMaSach() {
+        System.out.println("KTMaSach");
+        String input = "111";
+        QuanLyKhoSachController instance = new QuanLyKhoSachController();
         int expResult = 0;
-        int result = instance.DinhDangMail("thien@ou.edu.vn");
+        int result = instance.KTMaSach(input);
+        assertEquals(expResult, result);
+    }
+    @Test
+    public void testKTraRangBuocTenSach() {
+        System.out.println("KTraRangBuocTenSach");
+        String input = "Đi học 1 ";
+        QuanLyKhoSachController instance = new QuanLyKhoSachController();
+        int expResult = 0;
+        int result = instance.KTraRangBuocTenSach(input);
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of KTraRangBuoc method, of class DangKyController.
+     * Test of KTraRangBuocTenTacGia method, of class QuanLyKhoSachController.
      */
     @Test
-    public void testKTraRangBuocUserNameVaPass() {
-        System.out.println("KTraRangBuocUserNameVaPass");
-        String input = "thi$n3";
-        DangKyController instance = new DangKyController();
+    public void testKTraRangBuocTenTacGia() {
+        System.out.println("KTraRangBuocTenTacGia");
+        String input = "NVNV";
+        QuanLyKhoSachController instance = new QuanLyKhoSachController();
         int expResult = 0;
-        int result = instance.KTraRangBuocUserVaPass(input);
+        int result = instance.KTraRangBuocTenTacGia(input);
         assertEquals(expResult, result);
     }
-    @Test
-    public void testKTraRangBuocTenDocGia() {
-        System.out.println("KTraRangBuocTenDocGia");
-        String input = "thien";
-        DangKyController instance = new DangKyController();
-        int expResult = 0;
-        int result = instance.KTraRangBuocTenDocGia(input);
-        assertEquals(expResult, result);
-    }
-    @Test
-    public void testKTSDT(){
-        System.out.println("KTraRangBuocTenDocGia");
-        String input="0111112";
-        DangKyController instance =new DangKyController();
-        int result=instance.KTSDT(input);
-        assertEquals(0,result);
-    }
+    
 }

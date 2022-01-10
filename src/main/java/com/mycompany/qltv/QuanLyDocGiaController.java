@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -49,6 +50,11 @@ public class QuanLyDocGiaController implements Initializable  {
    public static String LayUser;
    public static String LaySDT;
    App app=new App();
+   @FXML private Hyperlink hpVeTrangChu;
+   public void hpVeTranChu(ActionEvent event) throws IOException
+   {
+       app.SwicthScene(event, "TrangChuQuanLy");
+   }
    public void btXoaThanhVien(ActionEvent event) throws SQLException{
        DocGia_DAO a=new DocGia_DAO();
        if(DSDocGia.getSelectionModel().getSelectedItem()!=null){

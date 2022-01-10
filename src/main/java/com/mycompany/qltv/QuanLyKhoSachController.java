@@ -7,6 +7,7 @@ package com.mycompany.qltv;
 
 import DAO.Sach_DAO;
 import DTO.Sach;
+import Response.TextLimit;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -40,9 +41,9 @@ public class QuanLyKhoSachController implements Initializable {
    @FXML private TableColumn<Sach,String> NoiPhatHanh;
    @FXML private TableColumn<Sach,String> TinhTrang;
    @FXML private TableColumn<Sach,String> LoaiSach;
-   @FXML private TextField txtMaSach;
-   @FXML private TextField txtTenSach;
-   @FXML private TextField txtTenTacGia;
+   @FXML private TextLimit txtMaSach;
+   @FXML private TextLimit txtTenSach;
+   @FXML private TextLimit txtTenTacGia;
    @FXML private TextField txtTT;
    @FXML private Button btThem;
    @FXML private Button btSua;
@@ -55,6 +56,48 @@ public class QuanLyKhoSachController implements Initializable {
         else
             return 0;
     }
+   public int KTraRangBuocTenSach(String input){
+        int KQ=0;
+        int demKyTuDB=0;
+        int size=input.length();
+        for(int i=0;i<size;i++){if((Character.getType(input.charAt(i))==Character.CURRENCY_SYMBOL)==true)
+                demKyTuDB++;
+        }
+        System.out.println(demKyTuDB);
+        if(demKyTuDB>0)
+            KQ=1;
+        return KQ;
+    }
+   public int KTraRangBuocTenTacGia(String input){
+        int KQ=0;
+        int demKySo=0;
+        int demKyTuDB=0;
+        int size=input.length();
+        for(int i=0;i<size;i++){
+            if(Character.isDigit(input.charAt(i))==true)
+                demKySo++;
+            else if((Character.getType(input.charAt(i))==Character.CURRENCY_SYMBOL)==true)
+                demKyTuDB++;
+        }
+        System.out.println(demKySo);
+        System.out.println(demKyTuDB);
+        if(demKySo>0||demKyTuDB>0)
+            KQ=1;
+        return KQ;
+    }
+   public int KTMaSach(String input){
+        int kq=0;
+        int demKySo=0;
+        int size=input.length();
+        for(int i=0;i<size;i++)
+        {
+            if(Character.isDigit(input.charAt(i))==true  )
+                demKySo++;
+        }
+        if(demKySo!=size  )
+            kq=1;
+        return kq;
+    }
    public void hpTC(ActionEvent event) throws IOException{
        app.SwicthScene(event, "TrangChuQuanLy");
    }
@@ -62,7 +105,10 @@ public class QuanLyKhoSachController implements Initializable {
        Sach_DAO a=new Sach_DAO();
        if(KTraGiaTriNull()==0)
        {
-       if(a.KTMaSach(txtMaSach.getText())!=true){
+           if(KTMaSach(txtMaSach.getText())==0){
+               if(KTraRangBuocTenTacGia(txtTenTacGia.getText())==0){
+                   if(KTraRangBuocTenSach(txtTenSach.getText())==0){
+       if(a.KTMaSach(txtMaSach.getText())!=true ){
            Sach b=new Sach();
            b.setMaSach(txtMaSach.getText());
            b.setTenSach(txtTenSach.getText());
@@ -81,28 +127,57 @@ public class QuanLyKhoSachController implements Initializable {
                JOptionPane.showMessageDialog(null, "Thêm thất bại");
        }
        else
-           JOptionPane.showMessageDialog(null, "Mã Sách bị trùng");
+           JOptionPane.showMessageDialog(null, "Mã Sách bị trùng hoặc tên sách bị trùng"); 
+                   }else
+                       JOptionPane.showMessageDialog(null, "Tên Sách không được có kí tự đb");
+               }else
+                   JOptionPane.showMessageDialog(null, "Tên Tác giả không được có số và kí tự đb");
+           }else 
+               JOptionPane.showMessageDialog(null, "Mã sách chỉ đc nhập số");
        }
        else
            JOptionPane.showMessageDialog(null, "Có Giá Trị còn trống");
    }
    public void butSua(ActionEvent event) throws SQLException{
+       System.out.println(txtMaSach.getText() + DSSach.getSelectionModel().getSelectedItem().getMaSach());
        Sach_DAO a=new Sach_DAO();
-       Sach b=new Sach();
-           b.setMaSach(DSSach.getSelectionModel().getSelectedItem().getMaSach());
+       if(KTraGiaTriNull()==0)
+       {
+           if(KTMaSach(txtMaSach.getText())==0){
+               if(KTraRangBuocTenTacGia(txtTenTacGia.getText())==0){
+                   if(KTraRangBuocTenSach(txtTenSach.getText())==0){
+           Sach b=new Sach();
+           if(txtMaSach.getText().equals(DSSach.getSelectionModel().getSelectedItem().getMaSach())==false)
+               JOptionPane.showMessageDialog(null, "Không được sửa Mã Sách");
+           else{
+               b.setMaSach(DSSach.getSelectionModel().getSelectedItem().getMaSach());
            b.setTenSach(txtTenSach.getText());
            b.setTinhTrang(DSSach.getSelectionModel().getSelectedItem().getTinhTrang());
            b.setTenTacGia(txtTenTacGia.getText());
-       if(a.SuaSach(b)==true){
-           JOptionPane.showMessageDialog(null, "Sửa Thành Công");
-           loadDSSach();
+           if(a.SuaSach(b)==true)
+           {
+               JOptionPane.showMessageDialog(null, "Sửa thành công");
+               try {
+                   loadDSSach();
+               } catch (SQLException ex) {
+                   Logger.getLogger(QuanLyKhoSachController.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+           else
+               JOptionPane.showMessageDialog(null, "Sửa thất bại");}
+                   }else
+                       JOptionPane.showMessageDialog(null, "Tên Sách không được có kí tự đb");
+               }else
+                   JOptionPane.showMessageDialog(null, "Tên tác giả không được có số và kí tự đb");
+           }else 
+               JOptionPane.showMessageDialog(null, "Mã sách chỉ đc nhập số");
        }
        else
-           JOptionPane.showMessageDialog(null, "Sửa Thất Bại");
+           JOptionPane.showMessageDialog(null, "Có Giá Trị còn trống");
    }
    public void butXoa(ActionEvent event) throws SQLException{
        Sach_DAO a=new Sach_DAO();
-       if(a.XoaSach(DSSach.getSelectionModel().getSelectedItem().getMaSach())==true){
+       if(a.XoaSach(DSSach.getSelectionModel().getSelectedItem().getMaSach())==true && !DSSach.getSelectionModel().getSelectedItem().getTinhTrang().equals("Borrowed")){
            JOptionPane.showMessageDialog(null, "Xóa Thành Công");
            loadDSSach();
        }
@@ -111,6 +186,11 @@ public class QuanLyKhoSachController implements Initializable {
    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtTT.setText("Available");
+        txtTT.setEditable(false);
+        txtMaSach.setlimit(7);
+        txtTenSach.setlimit(45);
+        txtTenTacGia.setlimit(45);
         this.DSSach.getItems().clear();
        try {
                loadDSSach();

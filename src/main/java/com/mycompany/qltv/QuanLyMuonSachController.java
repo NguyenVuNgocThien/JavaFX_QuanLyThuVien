@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,7 +53,12 @@ public class QuanLyMuonSachController implements Initializable {
    @FXML private DatePicker dtNgayTra;
    @FXML private DatePicker dtNgayMuon;
    @FXML private Button btAccess;
-   
+   @FXML private Hyperlink hpBack;
+   public void hpBack(ActionEvent event) throws IOException
+   {
+       App app=new App();
+       app.SwicthScene(event, "QuanLyDocGia");
+   }
    public int RangBuocNgayThangMuon(LocalDate dt){
        int kq=0;
        LocalDate now=LocalDate.now();
@@ -75,9 +81,12 @@ public class QuanLyMuonSachController implements Initializable {
    }
    public void btAccess(ActionEvent event) throws SQLException{
        Sach_DAO s=new Sach_DAO();
-       if(RangBuocNgayThangMuon(dtNgayMuon.getValue())==1)
+       if(dtNgayMuon.getValue()==null||dtNgayTra.getValue()==null)
+           JOptionPane.showMessageDialog(null, "Chưa nhập ngày trả hoặc ngày mượn");
+       else{
+       if(RangBuocNgayThangMuon(dtNgayMuon.getValue())==0)
            JOptionPane.showMessageDialog(null, "Ngày mượn nhỏ hơn ngày hiện tại");
-       else if(RangBuocNgayThangMuon(dtNgayTra.getValue())==0)
+       else if(RangBuocNgayThangTra(dtNgayMuon.getValue(),dtNgayTra.getValue())==0)
                 JOptionPane.showMessageDialog(null, "Ngày trả phải lớn hơn ngày mượn");
        else
        {
@@ -97,6 +106,7 @@ public class QuanLyMuonSachController implements Initializable {
        }
        else
            JOptionPane.showMessageDialog(null, "Access Thất Bại");
+       }
        }
    }
     @Override

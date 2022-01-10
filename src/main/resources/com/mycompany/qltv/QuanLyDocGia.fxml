@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -32,5 +33,6 @@
       <Button fx:id="btXoa" layoutX="84.0" layoutY="440.0" mnemonicParsing="false" onAction="#btXoaThanhVien" prefHeight="35.0" prefWidth="83.0" text="Xóa" />
       <Button fx:id="btQLMuon" layoutX="345.0" layoutY="440.0" mnemonicParsing="false" onAction="#btQuanLyMuonSach" prefHeight="35.0" prefWidth="150.0" text="Quản Lý Mượn Sách" />
       <Button fx:id="btQLTra" layoutX="605.0" layoutY="440.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Quản Lý Trả Sách" />
+      <Hyperlink fx:id="hpVeTrangChu" layoutX="25.0" layoutY="33.0" onAction="#hpVeTranChu" text="Về Trang Chủ" />
    </children>
 </AnchorPane>
