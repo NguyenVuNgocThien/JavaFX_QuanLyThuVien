@@ -139,8 +139,8 @@ public class QuanLyKhoSachController implements Initializable {
            JOptionPane.showMessageDialog(null, "Có Giá Trị còn trống");
    }
    public void butSua(ActionEvent event) throws SQLException{
-       System.out.println(txtMaSach.getText() + DSSach.getSelectionModel().getSelectedItem().getMaSach());
        Sach_DAO a=new Sach_DAO();
+       if(DSSach.getSelectionModel().getSelectedItem()!=null){
        if(KTraGiaTriNull()==0)
        {
            if(KTMaSach(txtMaSach.getText())==0){
@@ -174,15 +174,22 @@ public class QuanLyKhoSachController implements Initializable {
        }
        else
            JOptionPane.showMessageDialog(null, "Có Giá Trị còn trống");
+       }
+       else
+           JOptionPane.showMessageDialog(null, "Chưa chọn sách cần sửa thông tin");
    }
    public void butXoa(ActionEvent event) throws SQLException{
        Sach_DAO a=new Sach_DAO();
+       if(DSSach.getSelectionModel().getSelectedItem()!=null){
        if(a.XoaSach(DSSach.getSelectionModel().getSelectedItem().getMaSach())==true && !DSSach.getSelectionModel().getSelectedItem().getTinhTrang().equals("Borrowed")){
            JOptionPane.showMessageDialog(null, "Xóa Thành Công");
            loadDSSach();
        }
        else
            JOptionPane.showMessageDialog(null, "Xóa Thất Bại,Sách đang được mượn hoặc đang được yêu cầu mượn");
+       }
+       else
+           JOptionPane.showMessageDialog(null, "Chưa chọn sách cần xóa");
    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

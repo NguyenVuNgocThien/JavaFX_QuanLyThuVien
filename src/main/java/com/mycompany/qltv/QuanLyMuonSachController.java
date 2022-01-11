@@ -81,6 +81,7 @@ public class QuanLyMuonSachController implements Initializable {
    }
    public void btAccess(ActionEvent event) throws SQLException{
        Sach_DAO s=new Sach_DAO();
+       if(tbYeuCau.getSelectionModel().getSelectedItem()!=null){
        if(dtNgayMuon.getValue()==null||dtNgayTra.getValue()==null)
            JOptionPane.showMessageDialog(null, "Chưa nhập ngày trả hoặc ngày mượn");
        else{
@@ -107,7 +108,9 @@ public class QuanLyMuonSachController implements Initializable {
        else
            JOptionPane.showMessageDialog(null, "Access Thất Bại");
        }
-       }
+       }}
+       else
+           JOptionPane.showMessageDialog(null, "Chưa chọn yêu cầu cần thêm");
    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
