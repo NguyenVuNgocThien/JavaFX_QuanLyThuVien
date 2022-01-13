@@ -27,6 +27,9 @@ public class TrangChuController implements Initializable {
     public void clickMuonSach(ActionEvent event) throws IOException{
         app.SwicthScene(event, "MuonSach");
     }
+    public void clickTraSach (ActionEvent event) throws IOException{
+        app.SwicthScene(event, "TraSach");
+    }
     public void clickVeDangNhap(ActionEvent event) throws IOException{
         app.SwicthScene(event, "DangNhap");
     }

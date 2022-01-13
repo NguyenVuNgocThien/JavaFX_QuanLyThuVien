@@ -102,4 +102,22 @@ public class Muon_DAO {
         
         return KQ;
     }
+    public boolean XoaMuon(String MaSach,String MaDocGia) throws SQLException{
+        boolean KQ=false;
+        try(Connection conn=ConnectionClass.getConn()){
+            String query="delete from muon where MaSach=? and UserName=? ";
+            conn.setAutoCommit(false);
+            PreparedStatement stm=conn.prepareStatement(query);
+            stm.setString(1,MaSach);
+            stm.setString(2,MaDocGia);
+            stm.executeUpdate();
+            KQ=true;
+            conn.commit();
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+            KQ=false;
+        }
+        return KQ;
+    }
 }

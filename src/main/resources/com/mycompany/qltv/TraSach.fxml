@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="1370.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qltv.TraSachController">
+   <children>
+      <Label layoutX="611.0" layoutY="42.0" text="Quản Lý Trả Sách">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TableView fx:id="DSTra" layoutX="97.0" layoutY="165.0" prefHeight="219.0" prefWidth="1121.0">
+        <columns>
+          <TableColumn fx:id="IDTra" prefWidth="77.5999984741211" text="ID" />
+          <TableColumn fx:id="UserName1" prefWidth="159.20001220703125" text="UserName" />
+            <TableColumn fx:id="MaSach1" prefWidth="157.60000610351562" text="Mã Sách" />
+            <TableColumn fx:id="NgayMuon1" prefWidth="186.40005493164062" text="Ngày Mượn" />
+            <TableColumn fx:id="NgayTra1" prefWidth="204.80001831054688" text="Ngày Trả " />
+            <TableColumn fx:id="PhoneNumber1" prefWidth="170.40005493164062" text="Phone Number" />
+            <TableColumn fx:id="TinhTrang" prefWidth="167.199951171875" text="Tình Trạng Sách " />
+        </columns>
+      </TableView>
+      <Hyperlink fx:id="hpBack" layoutX="104.0" layoutY="126.0" onAction="#hpVeTrangChu" text="Về Trang Chủ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
+      <TableView fx:id="DSMuon" layoutX="104.0" layoutY="403.0" prefHeight="143.0" prefWidth="527.0">
+         <columns>
+            <TableColumn fx:id="IDMuon" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="UserName" prefWidth="75.0" text="UserName" />
+            <TableColumn fx:id="MaSach2" prefWidth="75.0" text="Mã Sách" />
+            <TableColumn fx:id="NgayMuon" prefWidth="92.0" text="Ngày Mượn" />
+            <TableColumn fx:id="NgayTra" prefWidth="82.6666259765625" text="Ngày Trả" />
+            <TableColumn fx:id="PhoneNumber" prefWidth="126.00006103515625" text="PhoneNumber" />
+         </columns>
+      </TableView>
+      <Button fx:id="btTraSach" layoutX="758.0" layoutY="450.0" mnemonicParsing="false" onAction="#butTraSach" prefHeight="26.0" prefWidth="70.0" text="Trả Sách" />
+   </children>
+</AnchorPane>
